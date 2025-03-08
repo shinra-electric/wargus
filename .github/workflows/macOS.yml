@@ -61,7 +61,7 @@ jobs:
         cmake wargus -B wargus/build \
         -DSTRATAGUS_INCLUDE_DIR=../stratagus/gameheaders \
         -DSTRATAGUS=../stratagus/build/stratagus 
-        cmake --build wargus/build --config Release
+        cmake --build wargus/build --config Release --parallel
 
     - name: Create Wargus app bundle
       run: |
@@ -136,12 +136,12 @@ jobs:
       run: |
         cmake stratagus -B stratagus/build \ 
         -DCMAKE_BUILD_TYPE=Release \
-        -DCMAKE_OSX_ARCHITECTURES=x86_64 \
+        -DCMAKE_OSX_ARCHITECTURES="x86_64;arm64" \
         -DBUILD_VENDORED_LUA=ON \
         -DBUILD_VENDORED_SDL=OFF \
         -DBUILD_VENDORED_MEDIA_LIBS=OFF \
         -DBUILD_TESTING=1
-        cmake --build stratagus/build --config Release
+        cmake --build stratagus/build --config Release --parallel
     
     - name: Build Wargus
       run: |
