@@ -49,7 +49,8 @@ jobs:
 
     - name: Build Stratagus
       run: |
-        cmake stratagus -B stratagus/build \ -DCMAKE_BUILD_TYPE=Release \
+        cmake stratagus -B stratagus/build \
+        -DCMAKE_BUILD_TYPE=Release \
         -DBUILD_VENDORED_LUA=ON \
         -DBUILD_VENDORED_SDL=OFF \
         -DBUILD_VENDORED_MEDIA_LIBS=OFF \
@@ -134,10 +135,10 @@ jobs:
     
     - name: Build Stratagus
       run: |
-        cmake stratagus -B stratagus/build \ 
+        cmake stratagus -B stratagus/build \
         -DCMAKE_BUILD_TYPE=Release \
-        -DCMAKE_OSX_ARCHITECTURES="x86_64;arm64" \
-        -DBUILD_VENDORED_LUA=ON \
+        -DCMAKE_OSX_ARCHITECTURES="x86_64" \
+        -DBUILD_VENDORED_LUA=OFF \
         -DBUILD_VENDORED_SDL=OFF \
         -DBUILD_VENDORED_MEDIA_LIBS=OFF \
         -DBUILD_TESTING=1
