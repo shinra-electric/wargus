@@ -117,7 +117,9 @@ jobs:
         eval "$(/usr/local/bin/brew shellenv)"
     
     - name: Install dependencies
-      run: arch -x86_64 brew install cmake dylibbundler sdl2 sdl2_mixer sdl2_image lua ffmpeg
+      run: |
+        eval "$(/usr/local/bin/brew shellenv)"
+        arch -x86_64 brew install cmake dylibbundler sdl2 sdl2_mixer sdl2_image lua ffmpeg
     
     - name: cmake --version
       run: cmake --version
