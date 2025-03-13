@@ -111,19 +111,20 @@ jobs:
     
     - name: Install x86 homebrew
       run: |
-        arch -x86_64 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+        arch -x86_64 zsh
+        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
         (echo; echo 'eval "$(/usr/local/bin/brew shellenv)"') >> $HOME/.zprofile
         eval "$(/usr/local/bin/brew shellenv)"
     
     - name: Install dependencies
-      run: arch -x86_64 brew install dylibbundler sdl2 sdl2_mixer sdl2_image lua ffmpeg
+      run: arch -x86_64 brew install cmake dylibbundler sdl2 sdl2_mixer sdl2_image lua ffmpeg
     
     - name: cmake --version
       run: cmake --version
     
     - name: Build Stratagus
       run: |
-        cmake stratagus -B stratagus/build \
+        arch -x86_64 cmake stratagus -B stratagus/build \
         -DCMAKE_BUILD_TYPE=Release \
         -DCMAKE_FIND_FRAMEWORK=LAST \
         -DCMAKE_OSX_ARCHITECTURES="x86_64"
@@ -135,7 +136,7 @@ jobs:
     
     - name: Build Wargus
       run: |
-        cmake wargus -B wargus/build \
+        arch -x86_64 cmake wargus -B wargus/build \
         -DCMAKE_FIND_FRAMEWORK=LAST \
         -DSTRATAGUS_INCLUDE_DIR=../stratagus/gameheaders \
         -DSTRATAGUS=../stratagus/build/stratagus 
