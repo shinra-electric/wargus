@@ -115,10 +115,15 @@ jobs:
         (echo; echo 'eval "$(/usr/local/bin/brew shellenv)"') >> $HOME/.zprofile
         eval "$(/usr/local/bin/brew shellenv)"
     
-    - name: Install dependencies
+    - name: Install x86 dependencies
       run: |
         eval "$(/usr/local/bin/brew shellenv)"
-        arch -x86_64 brew install cmake dylibbundler sdl2 sdl2_mixer sdl2_image lua ffmpeg
+        arch -x86_64 brew install sdl2 sdl2_mixer sdl2_image lua
+        
+    - name: Install arm dependencies
+      run: |
+        eval "$(/opt/homebrew/bin/brew shellenv)"
+        arch -x86_64 brew install dylibbundler 
     
     - name: cmake --version
       run: cmake --version
@@ -128,7 +133,7 @@ jobs:
         cmake stratagus -B stratagus/build \
         -DCMAKE_BUILD_TYPE=Release \
         -DCMAKE_FIND_FRAMEWORK=LAST \
-        -DCMAKE_OSX_ARCHITECTURES="x86_64"
+        -DCMAKE_OSX_ARCHITECTURES="x86_64" \
         -DBUILD_VENDORED_LUA=ON \
         -DBUILD_VENDORED_SDL=OFF \
         -DBUILD_VENDORED_MEDIA_LIBS=OFF \
@@ -138,7 +143,7 @@ jobs:
     - name: Build Wargus
       run: |
         cmake wargus -B wargus/build \
-        -DCMAKE_OSX_ARCHITECTURES="x86_64"
+        -DCMAKE_OSX_ARCHITECTURES="x86_64" \
         -DCMAKE_FIND_FRAMEWORK=LAST \
         -DSTRATAGUS_INCLUDE_DIR=../stratagus/gameheaders \
         -DSTRATAGUS=../stratagus/build/stratagus 
