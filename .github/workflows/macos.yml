@@ -125,7 +125,7 @@ jobs:
     
     - name: Build Stratagus
       run: |
-        arch -x86_64 cmake stratagus -B stratagus/build \
+        cmake stratagus -B stratagus/build \
         -DCMAKE_BUILD_TYPE=Release \
         -DCMAKE_FIND_FRAMEWORK=LAST \
         -DCMAKE_OSX_ARCHITECTURES="x86_64"
@@ -137,7 +137,8 @@ jobs:
     
     - name: Build Wargus
       run: |
-        arch -x86_64 cmake wargus -B wargus/build \
+        cmake wargus -B wargus/build \
+        -DCMAKE_OSX_ARCHITECTURES="x86_64"
         -DCMAKE_FIND_FRAMEWORK=LAST \
         -DSTRATAGUS_INCLUDE_DIR=../stratagus/gameheaders \
         -DSTRATAGUS=../stratagus/build/stratagus 
