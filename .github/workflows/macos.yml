@@ -111,8 +111,7 @@ jobs:
     
     - name: Install x86 homebrew
       run: |
-        arch -x86_64 zsh
-        /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
+        arch -x86_64 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
         (echo; echo 'eval "$(/usr/local/bin/brew shellenv)"') >> $HOME/.zprofile
         eval "$(/usr/local/bin/brew shellenv)"
     
