@@ -105,6 +105,10 @@ jobs:
         submodules: recursive
         path: stratagus
     
+    - name: Install Rosetta
+      run: |
+        /usr/sbin/softwareupdate --install-rosetta --agree-to-license
+    
     - name: Install x86 homebrew
       run: |
         arch -x86_64 /bin/bash -c "$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/HEAD/install.sh)"
@@ -112,7 +116,7 @@ jobs:
         eval "$(/usr/local/bin/brew shellenv)"
     
     - name: Install dependencies
-      run: brew install dylibbundler sdl2 sdl2_mixer sdl2_image lua ffmpeg
+      run: arch -x86_64 brew install dylibbundler sdl2 sdl2_mixer sdl2_image lua ffmpeg
     
     - name: cmake --version
       run: cmake --version
