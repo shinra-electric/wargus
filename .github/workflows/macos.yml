@@ -118,7 +118,7 @@ jobs:
     - name: Install x86 dependencies
       run: |
         eval "$(/usr/local/bin/brew shellenv)"
-        arch -x86_64 brew install sdl2 sdl2_mixer sdl2_image libogg lua 
+        arch -x86_64 brew install sdl2 sdl2_mixer sdl2_image lua ffmpeg
         
     - name: Install arm dependencies
       run: |
